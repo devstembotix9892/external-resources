@@ -18,7 +18,7 @@ function addToolbox () {
     <block type="sdCard_print" id="sdCard_print">
         <value name="DATA">
             <shadow type="text">
-                <field name="TEXT">Hello Openblock</field>
+                <field name="TEXT">Hello Blockzie</field>
             </shadow>
         </value>
     </block>

@@ -197,7 +197,7 @@ function addToolbox () {
     <block type="u8g2_drawString" id="u8g2_drawString">
         <value name="STR">
             <shadow type="text">
-                <field name="TEXT">Hello Openblock</field>
+                <field name="TEXT">Hello Blockzie</field>
             </shadow>
         </value>
         <value name="X">
@@ -226,7 +226,7 @@ function addToolbox () {
     <block type="u8g2_print" id="u8g2_print">
         <value name="STR">
             <shadow type="text">
-                <field name="TEXT">Hello Openblock</field>
+                <field name="TEXT">Hello Blockzie</field>
             </shadow>
         </value>
     </block>

@@ -253,7 +253,7 @@ function addToolbox () {
     <block type="oled_print" id="oled_print">
         <value name="DATA">
             <shadow type="text">
-                <field name="TEXT">Hello OpenBlock</field>
+                <field name="TEXT">Hello Blockzie</field>
             </shadow>
         </value>
     </block>
