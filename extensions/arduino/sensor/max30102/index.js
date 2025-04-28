@@ -6,7 +6,7 @@ const max30102 = formatMessage => ({
     extensionId: 'max30102',
     version: '1.0.0',
     supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
-        'arduinoMega2560', 'arduinoEsp32', 'arduinoEsp8266'],
+        'arduinoMega2560', 'arduinoEsp32', 'arduinoEsp8266','ottoRobot','intermediateKit','iotAiKit','arduinoNano_arduinoUno'],
     // author: 'STEMbotix',
     iconURL: `asset/max30102.png`,
     description: formatMessage({

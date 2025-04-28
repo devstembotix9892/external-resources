@@ -3,7 +3,7 @@ const u8g2 = formatMessage => ({
     extensionId: 'u8g2',
     version: '1.0.0',
     supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
-        'arduinoMega2560', 'arduinoEsp8266', 'arduinoEsp32'],
+        'arduinoMega2560', 'arduinoEsp8266', 'arduinoEsp32','ottoRobot','intermediateKit','iotAiKit','arduinoNano_arduinoUno'],
     // author: 'STEMbotix',
     iconURL: `asset/u8g2.png`,
     description: formatMessage({

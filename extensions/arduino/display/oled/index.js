@@ -3,7 +3,7 @@ const oled = formatMessage => ({
     extensionId: 'oled',
     version: '0.0.1',
     supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
-        'arduinoMega2560', 'arduinoEsp32', 'arduinoEsp8266'],
+        'arduinoMega2560', 'arduinoEsp32', 'arduinoEsp8266','ottoRobot','intermediateKit','iotAiKit','arduinoNano_arduinoUno'],
     // author: 'STEMbotix',
     iconURL: `asset/oled.png`,
     description: formatMessage({

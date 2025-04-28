@@ -3,7 +3,7 @@ const nrf24l01 = formatMessage => ({
     extensionId: 'nrf24l01',
     version: '1.0.0',
     supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
-        'arduinoMega2560', 'arduinoEsp8266', 'arduinoEsp32'],
+        'arduinoMega2560', 'arduinoEsp8266', 'arduinoEsp32','ottoRobot','intermediateKit','iotAiKit','arduinoNano_arduinoUno'],
     // author: 'STEMbotix',
     iconURL: `asset/nrf24l01.png`,
     description: formatMessage({

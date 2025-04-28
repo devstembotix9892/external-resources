@@ -3,7 +3,7 @@ const tcs3200 = formatMessage => ({
     extensionId: 'tcs3200',
     version: '1.0.0',
     supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
-        'arduinoMega2560'],
+        'arduinoMega2560','ottoRobot','iotAiKit','arduinoNano_arduinoUno'],
     // author: 'STEMbotix',
     iconURL: `asset/tcs3200.png`,
     description: formatMessage({

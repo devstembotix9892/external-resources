@@ -5,7 +5,7 @@ const wifiExtension = formatMessage => ({
     }),
     extensionId: 'wifi',
     version: '1.0.0',
-    supportDevice: ['arduinoEsp32', 'arduinoEsp8266'],
+    supportDevice: ['arduinoEsp32', 'arduinoEsp8266','intermediateKit'],
     author: 'YourName',
     iconURL: 'asset/wifi.png',
     description: formatMessage({

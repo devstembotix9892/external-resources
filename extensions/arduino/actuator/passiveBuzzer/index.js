@@ -6,7 +6,7 @@ const passiveBuzzer = formatMessage => ({
     extensionId: 'passiveBuzzer',
     version: '1.0.0',
     supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
-        'arduinoMega2560', 'arduinoEsp8266'],
+        'arduinoMega2560', 'arduinoEsp8266','ottoRobot','intermediateKit','iotAiKit','arduinoNano_arduinoUno'],
     // author: 'STEMbotix',
     iconURL: `asset/passiveBuzzer.png`,
     description: formatMessage({
