@@ -157,12 +157,12 @@ function addToolbox () {
 <block type="sdisplay_showImage" id="sdisplay_showImage">
         <value name="X">
             <shadow type="math_number">
-                <field name="NUM">10</field>
+                <field name="NUM">0</field>
             </shadow>
         </value>
         <value name="Y">
             <shadow type="math_number">
-                <field name="NUM">10</field>
+                <field name="NUM">0</field>
             </shadow>
         </value>
     </block>
@@ -175,12 +175,12 @@ function addToolbox () {
         </value>
         <value name="X">
             <shadow type="math_number">
-                <field name="NUM">30</field>
+                <field name="NUM">0</field>
             </shadow>
         </value>
         <value name="Y">
             <shadow type="math_number">
-                <field name="NUM">40</field>
+                <field name="NUM">0</field>
             </shadow>
         </value>
     </block>

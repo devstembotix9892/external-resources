@@ -53,6 +53,10 @@ function addToolbox() {
     <field name="DIRECTION">1</field>
 </block>
 
+  <block type="otto_move_command">
+        <field name="COMMAND">F</field>
+    </block>
+    
 </category>`;
 }
 

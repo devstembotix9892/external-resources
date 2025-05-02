@@ -23,9 +23,11 @@ function addGenerator (Blockly) {
         // Include necessary libraries
         Blockly.Arduino.includes_.sdisplay_init =
             `#include <Adafruit_GFX.h>\n` +
-            `#include <Adafruit_ST7735.h>\n` +
+            `#include <Adafruit_ST7735.h>\n` ;
             // `#include <SPI.h>\n` +
-             `#include "image_data.h"\n`;
+            `#include "image_data.h"\n` ;
+          
+
         
         // Define pinsx
         Blockly.Arduino.definitions_.sdisplay_pins =
@@ -111,11 +113,10 @@ function addGenerator (Blockly) {
     Blockly.Arduino['sdisplay_showImage'] = function (block) {
         // Get the selected image from the dropdown
         var image = block.getFieldValue('IMAGE');
-        
-        // Get the x and y coordinates from the input values
+    
         var x = Blockly.Arduino.valueToCode(block, 'X', Blockly.Arduino.ORDER_ATOMIC) || 0;
         var y = Blockly.Arduino.valueToCode(block, 'Y', Blockly.Arduino.ORDER_ATOMIC) || 0;
-    
+
         // Generate the code to show the selected image on the display
         const code = `sdisplay.drawBitmap(${x}, ${y}, ${image}, 128, 128, ST77XX_BLACK);\n`;
         return code;
@@ -125,7 +126,6 @@ function addGenerator (Blockly) {
         var emoji = block.getFieldValue('EMOJI'); // like "emoji_smile"
         var x = Blockly.Arduino.valueToCode(block, 'X', Blockly.Arduino.ORDER_ATOMIC) || '0';
         var y = Blockly.Arduino.valueToCode(block, 'Y', Blockly.Arduino.ORDER_ATOMIC) || '0';
-    
         // Draw bitmap using the selected emoji data
         const code = `sdisplay.drawBitmap(${x}, ${y}, ${emoji}, 128, 128, ST77XX_BLACK);\n`;
         return code;

@@ -41,6 +41,10 @@ function addToolbox () {
             </shadow>
         </value>
     </block>
+    <block type="lcd_action_control" id="lcd_action_control">
+        <field name="LCD_INDEX">1</field>
+        <field name="ACTION">CLEAR</field>
+    </block>
 </category>`;
 }
 

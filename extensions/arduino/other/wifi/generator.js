@@ -1,27 +1,26 @@
 function addGenerator(Blockly) {
   Blockly.Arduino.wifi_connect = function (block) {
-      const ssid = Blockly.Arduino.valueToCode(block, 'SSID', Blockly.Arduino.ORDER_ATOMIC) || '""';
-      const password = Blockly.Arduino.valueToCode(block, 'PASSWORD', Blockly.Arduino.ORDER_ATOMIC) || '""';
+    const ssid = Blockly.Arduino.valueToCode(block, 'SSID', Blockly.Arduino.ORDER_ATOMIC) || '""';
+    const password = Blockly.Arduino.valueToCode(block, 'PASSWORD', Blockly.Arduino.ORDER_ATOMIC) || '""';
 
-      // Include necessary libraries
-      Blockly.Arduino.includes_['wifi'] = `
+    // Include necessary libraries
+    Blockly.Arduino.includes_['wifi'] = `
 #include <WiFi.h>
-#include <WebServer.h>
-#include <ESP32Servo.h>`;
+#include <WebServer.h>`;
 
-      // Define WiFi credentials
-      Blockly.Arduino.definitions_['wifi_credentials'] = `
+    // Define WiFi credentials
+    Blockly.Arduino.definitions_['wifi_credentials'] = `
 const char* ssid = ${ssid};
 const char* password = ${password};
 WebServer server(80);`;
 
-      // Setup function
-      Blockly.Arduino.setups_['wifi_setup'] = `
+    // Setup function
+    Blockly.Arduino.setups_['wifi_setup'] = `
 Serial.begin(115200);
 initializeWiFi();`;
 
-      // Full initializeWiFi function
-      Blockly.Arduino.definitions_['initialize_wifi_function'] = `
+    // Full initializeWiFi function
+    Blockly.Arduino.definitions_['initialize_wifi_function'] = `
 void handleConnect() {
   server.sendHeader("Access-Control-Allow-Origin", "*");
   server.send(200, "text/plain", "Connected to WiFi");
@@ -119,15 +118,6 @@ void initializeWiFi() {
         server.send(400, "text/plain", "⚠ Invalid analog pin");
       }
 
-    } else if (command.startsWith("SET_SERVO_OUTPUT")) {
-      int pin, angle;
-      sscanf(command.c_str(), "SET_SERVO_OUTPUT %d %d", &pin, &angle);
-      Servo myServo;
-      myServo.attach(pin);
-      myServo.write(angle);
-      Serial.printf("🦾 Servo on pin %d set to angle %d\\n", pin, angle);
-      server.send(200, "text/plain", "✅ Servo angle set");
-
     } else if (command.startsWith("DIGITAL_WRITE")) {
       int pin, value;
       sscanf(command.c_str(), "DIGITAL_WRITE %d %d", &pin, &value);
@@ -142,15 +132,6 @@ void initializeWiFi() {
       Serial.printf("📶 Digital read on pin %d: %d\\n", pin, value);
       server.send(200, "text/plain", String(value));
 
-    } else if (command.startsWith("PWM_WRITE")) {
-      int pin, duty;
-      sscanf(command.c_str(), "PWM_WRITE %d %d", &pin, &duty);
-      duty = constrain(duty, 0, 255);
-      pinMode(pin, OUTPUT);
-      analogWrite(pin, duty);
-      Serial.printf("⚡ PWM on pin %d set to %d\\n", pin, duty);
-      server.send(200, "text/plain", "✅ PWM signal set");
-
     } else {
       Serial.println("❓ Unknown command received");
       server.send(400, "text/plain", "⚠ Unknown command");
@@ -161,11 +142,11 @@ void initializeWiFi() {
   Serial.println("🌍 HTTP Server Started");
 }`;
 
-      // Loop function
-      Blockly.Arduino.loops_['wifi_loop'] = `
+    // Loop function
+    Blockly.Arduino.loops_['wifi_loop'] = `
 server.handleClient();`;
 
-      return '';
+    return '';
   };
 
   return Blockly;

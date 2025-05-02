@@ -9,7 +9,8 @@ function addMsg(Blockly) {
         OTTO_MOONWALKER: 'Otto moonwalker repeat %1 times with speed %2 and height %3 in direction %4',
         OTTO_JUMP: 'Otto jump steps %1 time %2',
         OTTO_TURN: 'Otto turn steps %1 time %2 direction %3',
-        OTTO_SHAKE_LEG: 'Otto shake leg steps %1 time %2 direction %3'
+        OTTO_SHAKE_LEG: 'Otto shake leg steps %1 time %2 direction %3',
+        OTTO_MOVE_COMMAND: 'Otto send BLE command %1'
     });
 
     Object.assign(Blockly.ScratchMsgs.locales['zh-cn'], {
@@ -19,7 +20,8 @@ function addMsg(Blockly) {
         OTTO_MOONWALKER: 'Otto 太空步重复 %1 次 速度 %2 高度 %3 方向 %4',
         OTTO_JUMP: 'Otto 跳跃 步骤 %1 时间 %2',
         OTTO_TURN: 'Otto 转向 步骤 %1 时间 %2 方向 %3',
-        OTTO_SHAKE_LEG: 'Otto 摇腿 步骤 %1 时间 %2 方向 %3'
+        OTTO_SHAKE_LEG: 'Otto 摇腿 步骤 %1 时间 %2 方向 %3',
+        OTTO_MOVE_COMMAND: 'Otto 发送 BLE 指令 %1'
     });
 
     return Blockly;

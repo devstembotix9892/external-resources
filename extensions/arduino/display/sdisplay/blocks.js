@@ -54,7 +54,8 @@ function addBlocks (Blockly) {
         Blockly.Arduino.includes_['include_Adafruit_GFX'] = '#include <Adafruit_GFX.h>';
         Blockly.Arduino.includes_['include_Adafruit_ST7735'] = '#include <Adafruit_ST7735.h>';
         // Blockly.Arduino.includes_['include_SPI'] = '#include <SPI.h>';
-         Blockly.Arduino.includes_['include_image_data'] = '#include <image_data.h>';
+        Blockly.Arduino.includes_['include_image_data'] = '#include <image_data.h>';
+        // Blockly.Arduino.includes_['include_image_data1'] = '#include <image_data1.h>';
     
         // Declare the LCD object
         Blockly.Arduino.definitions_['var_sdisplay'] =
@@ -207,8 +208,8 @@ function addBlocks (Blockly) {
                             ['RED', 'ST77XX_RED'],
                             ['GREEN', 'ST77XX_GREEN'],
                             ['BLUE', 'ST77XX_BLUE'],
-                            ['YELLOW', 'ST77XX_YELLOW'],
-                            ['CYAN', 'ST77XX_CYAN'],
+                            ['YELLOW', 'ST77XX_CYAN'],
+                            ['CYAN', 'ST77XX_YELLOW'],
                             ['MAGENTA', 'ST77XX_MAGENTA']
                         ]
                     }
@@ -269,8 +270,7 @@ Blockly.Blocks['sdisplay_showImage'] = {
                     type: 'field_dropdown',
                     name: 'IMAGE',
                     options: [
-                        ['Ottobot', 'image_ottobot'],
-                        ['Stembot', 'image_stembot']
+                        ['Ottobot', 'image_ottobot']
                     ]
                 },
                 {
@@ -298,11 +298,9 @@ Blockly.Blocks['sdisplay_showEmoji'] = {
                     type: 'field_dropdown',
                     name: 'EMOJI',
                     options: [
-                        ['Smile 😀', 'emoji_smile'],
-                        ['Sad 😢', 'emoji_sad'],
-                        ['Heart ❤️', 'emoji_heart'],
-                        ['Star ⭐', 'emoji_star']
-                        // Add more emojis here as needed
+                        ['Smile',   'image_smiley'],
+                        ['Sad', 'epd_bitmap_sad'],
+                        ['Angry', 'epd_bitmap_angry'] 
                     ]
                 },
                 {

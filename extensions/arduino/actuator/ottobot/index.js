@@ -3,7 +3,7 @@ const ottobot = formatMessage => ({
     extensionId: 'ottobot',
     version: '1.0.0',
     supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
-        'arduinoMega2560', 'arduinoEsp8266','ottoRobot','intermediateKit','iotAiKit','arduinoNano_arduinoUno'],
+        'arduinoMega2560', 'arduinoEsp8266'],
     // author: 'STEMbotix',
     iconURL: `asset/otto.png`,
     description: formatMessage({

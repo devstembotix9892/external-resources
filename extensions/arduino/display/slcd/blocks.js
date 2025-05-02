@@ -15,8 +15,16 @@ function addBlocks (Blockly) {
     Blockly.Blocks.lcd_config = {
         init: function () {
             this.jsonInit({
-                message0: 'configure LCD type %1 with address %2',
+                message0: 'configure LCD %1 type %2 with address %3',
                 args0: [
+                    {
+                        type: "field_dropdown",
+                        name: "LCD_INDEX",
+                        options: [
+                            ["1", "1"],
+                            ["2", "2"]
+                        ]
+                    },
                     {
                         type: "field_dropdown",
                         name: "TYPE",
@@ -46,6 +54,7 @@ function addBlocks (Blockly) {
             });
         }
     };
+    
 
     Blockly.Blocks.lcd_config_standard = {
         init: function () {
@@ -188,6 +197,46 @@ function addBlocks (Blockly) {
             });
         }
     };
+
+    Blockly.Blocks.lcd_action_control = {
+        init: function () {
+            this.jsonInit({
+                message0: 'on LCD %1 %2',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'LCD_INDEX',
+                        options: [['1', '1'], ['2', '2']]
+                    },
+                    {
+                        type: 'field_dropdown',
+                        name: 'ACTION',
+                        options: [
+                            ['clear the screen', 'CLEAR'],
+                            ['turn on the backlight', 'BACKLIGHT_ON'],
+                            ['turn off the backlight', 'BACKLIGHT_OFF'],
+                            ['turn on the display', 'DISPLAY_ON'],
+                            ['turn off the display', 'DISPLAY_OFF'],
+                            ['turn on the cursor', 'CURSOR_ON'],
+                            ['turn off the cursor', 'CURSOR_OFF'],
+                            ['turn on cursor blinking', 'BLINK_ON'],
+                            ['turn off cursor blinking', 'BLINK_OFF'],
+                            ['turn on autoscrolling', 'AUTOSCROLL_ON'],
+                            ['turn off autoscrolling', 'AUTOSCROLL_OFF'],
+                            ['scroll the display to the left', 'SCROLL_LEFT'],
+                            ['scroll the display to the right', 'SCROLL_RIGHT'],
+                            ['set print direction left to right', 'LTR'],
+                            ['set print direction right to left', 'RTL']
+                        ]
+                    }
+                ],
+                colour: colour,
+                secondaryColour: secondaryColour,
+                extensions: ['shape_statement']
+            });
+        }
+    };
+    
 
     return Blockly;
 }
