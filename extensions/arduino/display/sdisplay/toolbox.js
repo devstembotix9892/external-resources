@@ -167,24 +167,193 @@ function addToolbox () {
         </value>
     </block>
 
-    <block type="sdisplay_showEmoji" id="sdisplay_showEmoji">
-        <value name="EMOJI">
-            <shadow type="text">
-                <field name="TEXT">😊</field>
-            </shadow>
-        </value>
-        <value name="X">
-            <shadow type="math_number">
-                <field name="NUM">0</field>
-            </shadow>
-        </value>
-        <value name="Y">
-            <shadow type="math_number">
-                <field name="NUM">0</field>
-            </shadow>
-        </value>
+   <block type="sdisplay_showEmoji" id="sdisplay_showEmoji">
+    <value name="EMOJI">
+        <shadow type="text">
+        <field name="TEXT">😊</field>
+        </shadow>
+    </value>
+    <value name="X">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="Y">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <field name="SIZE">2</field>
+    <field name="COLOR">ST77XX_WHITE</field>
+    <field name="BACKGROUND">ST77XX_BLACK</field>
     </block>
-    
+
+    <!-- Draw Line -->
+    <block type="sdisplay_drawLine" id="sdisplay_drawLine">
+    <value name="X1">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="Y1">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="X2">
+        <shadow type="math_number">
+        <field name="NUM">50</field>
+        </shadow>
+    </value>
+    <value name="Y2">
+        <shadow type="math_number">
+        <field name="NUM">50</field>
+        </shadow>
+    </value>
+    <value name="COLOR">
+        <shadow type="colour_picker">
+        <field name="COLOUR">#ff0000</field>
+        </shadow>
+    </value>
+    </block>
+
+    <!-- Rectangle -->
+    <block type="sdisplay_rectangle">
+    <field name="MODE">FILL</field>
+    <value name="X">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="Y">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="W">
+        <shadow type="math_number">
+        <field name="NUM">50</field>
+        </shadow>
+    </value>
+    <value name="H">
+        <shadow type="math_number">
+        <field name="NUM">30</field>
+        </shadow>
+    </value>
+    <field name="COLOR">ST77XX_RED</field>
+    </block>
+
+
+    <!-- Round Rectangle -->
+    <block type="sdisplay_roundrect">
+    <field name="MODE">FILL</field>
+    <value name="X">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="Y">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="W">
+        <shadow type="math_number">
+        <field name="NUM">60</field>
+        </shadow>
+    </value>
+    <value name="H">
+        <shadow type="math_number">
+        <field name="NUM">40</field>
+        </shadow>
+    </value>
+    <value name="R">
+        <shadow type="math_number">
+        <field name="NUM">5</field>
+        </shadow>
+    </value>
+    </block>
+
+    <!-- Circle -->
+    <block type="sdisplay_circle">
+    <field name="MODE">FILL</field>
+    <value name="X">
+        <shadow type="math_number">
+        <field name="NUM">30</field>
+        </shadow>
+    </value>
+    <value name="Y">
+        <shadow type="math_number">
+        <field name="NUM">30</field>
+        </shadow>
+    </value>
+    <value name="R">
+        <shadow type="math_number">
+        <field name="NUM">15</field>
+        </shadow>
+    </value>
+    </block>
+
+    <!-- Ellipse -->
+    <block type="sdisplay_ellipse">
+    <field name="MODE">FILL</field>
+    <value name="X">
+        <shadow type="math_number">
+        <field name="NUM">40</field>
+        </shadow>
+    </value>
+    <value name="Y">
+        <shadow type="math_number">
+        <field name="NUM">40</field>
+        </shadow>
+    </value>
+    <value name="XL">
+        <shadow type="math_number">
+        <field name="NUM">20</field>
+        </shadow>
+    </value>
+    <value name="YL">
+        <shadow type="math_number">
+        <field name="NUM">10</field>
+        </shadow>
+    </value>
+    </block>
+
+    <!-- Triangle -->
+    <block type="sdisplay_triangle" id="sdisplay_triangle">
+    <field name="MODE">FILL</field>
+    <value name="X1">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="Y1">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="X2">
+        <shadow type="math_number">
+        <field name="NUM">40</field>
+        </shadow>
+    </value>
+    <value name="Y2">
+        <shadow type="math_number">
+        <field name="NUM">0</field>
+        </shadow>
+    </value>
+    <value name="X3">
+        <shadow type="math_number">
+        <field name="NUM">20</field>
+        </shadow>
+    </value>
+    <value name="Y3">
+        <shadow type="math_number">
+        <field name="NUM">30</field>
+        </shadow>
+    </value>
+    </block>
+
 </category>`;
 }
 

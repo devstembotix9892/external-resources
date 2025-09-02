@@ -72,7 +72,8 @@ function addMsg(Blockly) {
         SDISPLAY_SET_ROTATION: 'Set rotation on sdisplay to %1',
         SDISPLAY_CLEAR_DISPLAY: 'Clear sdisplay display',
         SDISPLAY_SHOW_IMAGE: 'Show image %1 on display at x: %2 y: %3',
-        SDISPLAY_SHOW_EMOJI: 'Show emoji %1 at x %2 y %3'
+        SDISPLAY_SHOW_EMOJI: 'Show emoji %1 at x %2 y %3',
+
     });
 
     Object.assign(Blockly.ScratchMsgs.locales['zh-cn'], {

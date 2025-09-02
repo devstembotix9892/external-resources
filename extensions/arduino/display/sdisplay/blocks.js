@@ -318,6 +318,288 @@ Blockly.Blocks['sdisplay_showEmoji'] = {
         });
     }
 };
+// Blockly.Blocks['sdisplay_showEmoji'] = {
+//     init: function () {
+//         this.jsonInit({
+//             message0: 'display %1 of size %2 px at position %3 , %4 , color %5 & background %6',
+//             args0: [
+//                 {
+//                     type: 'field_dropdown',
+//                     name: 'EMOJI',
+//                     options: [
+//                         ['😊 Smile',   'image_smiley'],
+//                         ['😢 Sad',     'epd_bitmap_sad'],
+//                         ['😡 Angry',   'epd_bitmap_angry'],
+//                         ['😍 Love',    'epd_bitmap_love'],
+//                         ['❤  heart',   'epd_bitmap_heart'],
+//                     ]
+//                 },
+//                 {
+//                     type: 'field_number',
+//                     name: 'SIZE',
+//                     value: 3,
+//                     min: 1,
+//                     max: 10
+//                 },
+//                 { type: 'input_value', name: 'X' },
+//                 { type: 'input_value', name: 'Y' },
+//                 {
+//                     type: 'field_dropdown',
+//                     name: 'COLOR',
+//                     options: [
+//                         ['BLACK', 'ST77XX_BLACK'],
+//                         ['WHITE', 'ST77XX_WHITE'],
+//                         ['RED', 'ST77XX_RED'],
+//                         ['GREEN', 'ST77XX_GREEN'],
+//                         ['BLUE', 'ST77XX_BLUE'],
+//                         ['YELLOW', 'ST77XX_YELLOW'],
+//                         ['CYAN', 'ST77XX_CYAN'],
+//                         ['MAGENTA', 'ST77XX_MAGENTA']
+//                     ]
+//                 },
+//                 {
+//                     type: 'field_dropdown',
+//                     name: 'BACKGROUND',
+//                     options: [
+//                         ['BLACK', 'ST77XX_BLACK'],
+//                         ['WHITE', 'ST77XX_WHITE'],
+//                         ['RED', 'ST77XX_RED'],
+//                         ['GREEN', 'ST77XX_GREEN'],
+//                         ['BLUE', 'ST77XX_BLUE'],
+//                         ['YELLOW', 'ST77XX_YELLOW'],
+//                         ['CYAN', 'ST77XX_CYAN'],
+//                         ['MAGENTA', 'ST77XX_MAGENTA']
+//                     ]
+//                 }
+//             ],
+//             colour: '#FF79BC',
+//             secondaryColour: '#FF359A',
+//             extensions: ['shape_statement']
+//         });
+//     }
+// };
+
+
+Blockly.Blocks['sdisplay_drawLine'] = {
+  init: function () {
+    this.jsonInit({
+      message0: 'Draw line from x1: %1 y1: %2 to x2: %3 y2: %4 color: %5',
+      args0: [
+        { type: 'input_value', name: 'X1' },
+        { type: 'input_value', name: 'Y1' },
+        { type: 'input_value', name: 'X2' },
+        { type: 'input_value', name: 'Y2' },
+        {
+          type: 'field_dropdown',
+          name: 'COLOR',
+          options: [
+            ['BLACK', 'ST77XX_BLACK'],
+            ['WHITE', 'ST77XX_WHITE'],
+            ['RED', 'ST77XX_RED'],
+            ['GREEN', 'ST77XX_GREEN'],
+            ['BLUE', 'ST77XX_BLUE'],
+            ['YELLOW', 'ST77XX_YELLOW'],
+            ['CYAN', 'ST77XX_CYAN'],
+            ['MAGENTA', 'ST77XX_MAGENTA']
+          ]
+        }
+      ],
+      colour: colour,
+      secondaryColour: secondaryColour,
+      extensions: ['shape_statement']
+    });
+  }
+};
+
+
+Blockly.Blocks['sdisplay_rectangle'] = {
+  init: function () {
+    this.jsonInit({
+      message0: '%1 rectangle at x:%2 y:%3 width:%4 height:%5 color:%6',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'MODE',
+          options: [
+            ['Fill', 'FILL'],
+            ['Draw', 'DRAW']
+          ]
+        },
+        { type: 'input_value', name: 'X' },
+        { type: 'input_value', name: 'Y' },
+        { type: 'input_value', name: 'W' },
+        { type: 'input_value', name: 'H' },
+        {
+          type: 'field_dropdown',
+          name: 'COLOR',
+          options: [
+            ['BLACK', 'ST77XX_BLACK'],
+            ['WHITE', 'ST77XX_WHITE'],
+            ['RED', 'ST77XX_RED'],
+            ['GREEN', 'ST77XX_GREEN'],
+            ['BLUE', 'ST77XX_BLUE'],
+            ['YELLOW', 'ST77XX_YELLOW'],
+            ['CYAN', 'ST77XX_CYAN'],
+            ['MAGENTA', 'ST77XX_MAGENTA']
+          ]
+        }
+      ],
+      colour: '#FF79BC',
+      extensions: ['shape_statement']
+    });
+  }
+};
+
+
+    // Round Rectangle Block
+Blockly.Blocks['sdisplay_roundrect'] = {
+  init: function () {
+    this.jsonInit({
+      message0: '%1 round rectangle at x:%2 y:%3 width:%4 height:%5 radius:%6 color:%7',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'MODE',
+          options: [['Fill', 'FILL'], ['Draw', 'DRAW']]
+        },
+        { type: 'input_value', name: 'X' },
+        { type: 'input_value', name: 'Y' },
+        { type: 'input_value', name: 'W' },
+        { type: 'input_value', name: 'H' },
+        { type: 'input_value', name: 'R' },
+        {
+          type: 'field_dropdown',
+          name: 'COLOR',
+          options: [
+            ['BLACK', 'ST77XX_BLACK'],
+            ['WHITE', 'ST77XX_WHITE'],
+            ['RED', 'ST77XX_RED'],
+            ['GREEN', 'ST77XX_GREEN'],
+            ['BLUE', 'ST77XX_BLUE'],
+            ['YELLOW', 'ST77XX_YELLOW'],
+            ['CYAN', 'ST77XX_CYAN'],
+            ['MAGENTA', 'ST77XX_MAGENTA']
+          ]
+        }
+      ],
+      colour: '#FF79BC',
+      extensions: ['shape_statement']
+    });
+  }
+};
+    // Circle Block
+Blockly.Blocks['sdisplay_circle'] = {
+  init: function () {
+    this.jsonInit({
+      message0: '%1 circle at x:%2 y:%3 radius:%4 color:%5',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'MODE',
+          options: [['Fill', 'FILL'], ['Draw', 'DRAW']]
+        },
+        { type: 'input_value', name: 'X' },
+        { type: 'input_value', name: 'Y' },
+        { type: 'input_value', name: 'R' },
+        {
+          type: 'field_dropdown',
+          name: 'COLOR',
+          options: [
+            ['BLACK', 'ST77XX_BLACK'],
+            ['WHITE', 'ST77XX_WHITE'],
+            ['RED', 'ST77XX_RED'],
+            ['GREEN', 'ST77XX_GREEN'],
+            ['BLUE', 'ST77XX_BLUE'],
+            ['YELLOW', 'ST77XX_YELLOW'],
+            ['CYAN', 'ST77XX_CYAN'],
+            ['MAGENTA', 'ST77XX_MAGENTA']
+          ]
+        }
+      ],
+      colour: '#FF79BC',
+      extensions: ['shape_statement']
+    });
+  }
+};
+    // Ellipse Block
+Blockly.Blocks['sdisplay_ellipse'] = {
+  init: function () {
+    this.jsonInit({
+      message0: '%1 ellipse at x:%2 y:%3 radiusX:%4 radiusY:%5 color:%6',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'MODE',
+          options: [
+            ['Fill', 'FILL'],
+            ['Draw', 'DRAW']
+          ]
+        },
+        { type: 'input_value', name: 'X' },
+        { type: 'input_value', name: 'Y' },
+        { type: 'input_value', name: 'XL' },
+        { type: 'input_value', name: 'YL' },
+        {
+          type: 'field_dropdown',
+          name: 'COLOR',
+          options: [
+            ['BLACK', 'ST77XX_BLACK'],
+            ['WHITE', 'ST77XX_WHITE'],
+            ['RED', 'ST77XX_RED'],
+            ['GREEN', 'ST77XX_GREEN'],
+            ['BLUE', 'ST77XX_BLUE'],
+            ['YELLOW', 'ST77XX_YELLOW'],
+            ['CYAN', 'ST77XX_CYAN'],
+            ['MAGENTA', 'ST77XX_MAGENTA']
+          ]
+        }
+      ],
+      colour: '#FF79BC',
+      extensions: ['shape_statement']
+    });
+  }
+};
+
+    // Triangle Block
+Blockly.Blocks['sdisplay_triangle'] = {
+  init: function () {
+    this.jsonInit({
+      message0: '%1 triangle x0:%2 y0:%3 x1:%4 y1:%5 x2:%6 y2:%7 color:%8',
+      args0: [
+        {
+          type: 'field_dropdown',
+          name: 'MODE',
+          options: [
+            ['Fill', 'FILL'],
+            ['Draw', 'DRAW']
+          ]
+        },
+        { type: 'input_value', name: 'X1' },
+        { type: 'input_value', name: 'Y1' },
+        { type: 'input_value', name: 'X2' },
+        { type: 'input_value', name: 'Y2' },
+        { type: 'input_value', name: 'X3' },
+        { type: 'input_value', name: 'Y3' },
+        {
+          type: 'field_dropdown',
+          name: 'COLOR',
+          options: [
+            ['BLACK', 'ST77XX_BLACK'],
+            ['WHITE', 'ST77XX_WHITE'],
+            ['RED', 'ST77XX_RED'],
+            ['GREEN', 'ST77XX_GREEN'],
+            ['BLUE', 'ST77XX_BLUE'],
+            ['YELLOW', 'ST77XX_YELLOW'],
+            ['CYAN', 'ST77XX_CYAN'],
+            ['MAGENTA', 'ST77XX_MAGENTA']
+          ]
+        }
+      ],
+      colour: '#FF79BC',
+      extensions: ['shape_statement']
+    });
+  }
+};
 
     return Blockly;
 }

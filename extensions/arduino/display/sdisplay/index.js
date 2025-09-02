@@ -2,7 +2,8 @@ const sdisplay = formatMessage => ({
     name: 'SDISPLAY',
     extensionId: 'sdisplay',
     version: '1.0.0',
-    supportDevice: ['arduinoUno', 'arduinoNano','iotAiKit','arduinoNano_arduinoUno' ],
+    supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
+        'arduinoMega2560', 'arduinoEsp8266', 'arduinoEsp32', 'intermediateKit'],
     // author: 'STEMbotix',
     iconURL: `asset/th.png`,
     description: formatMessage({

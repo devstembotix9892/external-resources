@@ -216,6 +216,9 @@ function addBlocks(Blockly) {
         }
     };
 
+    //otto left hand
+    
+
     // Otto Moonwalker block
     Blockly.Blocks.otto_moonwalker = {
         init: function () {
