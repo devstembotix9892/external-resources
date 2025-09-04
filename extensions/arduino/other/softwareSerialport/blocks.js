@@ -115,6 +115,29 @@ function addBlocks (Blockly) {
         }
     };
 
+    Blockly.Blocks.softwareSerial_readAString = {
+        init: function () {
+            this.jsonInit({
+                message0: "read string from serial %1",
+                args0: [
+                    {
+                        type: "field_dropdown",
+                        name: "NO",
+                        options: [
+                            ["Serial0", "0"],
+                            ["Serial1", "1"],
+                            ["Serial2", "2"]
+                        ]
+                    }
+                ],
+                colour: color,
+                extensions: ["output_string"]
+            });
+        }
+    };
+
+
+
 
     return Blockly;
 }

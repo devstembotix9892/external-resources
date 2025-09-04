@@ -9,7 +9,8 @@ function addMsg (Blockly) {
         SOFTWARESERIAL_NOWARP: 'no-warp',
         SOFTWARESERIAL_AVAILABLE: 'software serial %1 available data length',
         SOFTWARESERIAL_READABYTE: 'software serial %1 read a byte',
-        SOFTWARESERIAL_READANUMBER: 'software serial %1 read a number' 
+        SOFTWARESERIAL_READANUMBER: 'software serial %1 read a number',
+        SOFTWARESERIAL_READASTRING: 'software serial %1 read a string'   
     });
     Object.assign(Blockly.ScratchMsgs.locales['zh-cn'], {
         SOFTWARESERIAL_CATEGORY: '软件串口',
@@ -19,7 +20,8 @@ function addMsg (Blockly) {
         SOFTWARESERIAL_NOWARP: '不换行',
         SOFTWARESERIAL_AVAILABLE: '软件串口 %1 可用数据长度',
         SOFTWARESERIAL_READABYTE: '软件串口 %1 读取一个字节',
-        SOFTWARESERIAL_READANUMBER: '软件串口 %1 读取一个数字'
+        SOFTWARESERIAL_READANUMBER: '软件串口 %1 读取一个数字',
+        SOFTWARESERIAL_READASTRING: '软件串口 %1 读取一个字符串' 
     });
     return Blockly;
 }

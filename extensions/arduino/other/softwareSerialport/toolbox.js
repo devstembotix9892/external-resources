@@ -55,6 +55,11 @@ function addToolbox () {
             </shadow>
         </value>
     </block>
+<block type="softwareSerial_readAString"></block>
+
+
+
+
 </category>`;
 }
 

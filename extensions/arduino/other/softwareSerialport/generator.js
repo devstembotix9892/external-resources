@@ -42,6 +42,12 @@ function addGenerator (Blockly) {
     };
 
 
+    Blockly.Arduino.softwareSerial_readAString = function (block) { 
+        const no = block.getFieldValue("NO"); 
+        const code = `(softwareSerial_${no}.available() ? softwareSerial_${no}.readStringUntil('\\n') : "")`; 
+        return [code, Blockly.Arduino.ORDER_ATOMIC]; 
+    };
+
 
     // Blockly.Arduino.softwareSerial_readAnumber = function (block) {
     //     const no = Blockly.Arduino.valueToCode(block, 'NO', Blockly.Arduino.ORDER_ATOMIC);
