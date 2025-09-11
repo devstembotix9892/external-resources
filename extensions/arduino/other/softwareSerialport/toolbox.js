@@ -55,7 +55,13 @@ function addToolbox () {
             </shadow>
         </value>
     </block>
-<block type="softwareSerial_readAString"></block>
+    <block type="softwareSerial_readAString">
+         <value name="NO">
+            <shadow type="math_whole_number">
+                <field name="NUM">1</field>
+            </shadow>
+         </value>
+</block>
 
 
 

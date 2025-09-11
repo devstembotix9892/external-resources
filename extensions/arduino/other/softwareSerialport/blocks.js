@@ -121,13 +121,8 @@ function addBlocks (Blockly) {
                 message0: "read string from serial %1",
                 args0: [
                     {
-                        type: "field_dropdown",
-                        name: "NO",
-                        options: [
-                            ["Serial0", "0"],
-                            ["Serial1", "1"],
-                            ["Serial2", "2"]
-                        ]
+                        type: "input_value",
+                        name: "NO"
                     }
                 ],
                 colour: color,
@@ -135,6 +130,7 @@ function addBlocks (Blockly) {
             });
         }
     };
+
 
 
 

@@ -134,6 +134,8 @@ module.exports = {
         "slcd.name": "LCD液晶屏",
         "slcd.description": "基于I2C总线的液晶显示屏。",
         "wifi.name": "WiFi连接",
-        "wifi.description": "使用积木将ESP开发板连接到WiFi网络。"
+        "wifi.description": "使用积木将ESP开发板连接到WiFi网络。",
+        "ble.name": "BLE Connection",
+        "ble.description":"Connect ESP32 boards via Bluetooth Low Energy (BLE)"
     }
 };
