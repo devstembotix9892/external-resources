@@ -3,7 +3,7 @@ const sdisplay = formatMessage => ({
     extensionId: 'sdisplay',
     version: '1.0.0',
     supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoMini', 'arduinoLeonardo',
-        'arduinoMega2560', 'arduinoEsp8266', 'arduinoEsp32', 'intermediateKit'],
+        'arduinoMega2560', 'arduinoEsp8266', 'arduinoEsp32', 'intermediateKit', 'iotAiKit', 'arduinoNano_arduinoUno'],
     // author: 'STEMbotix',
     iconURL: `asset/th.png`,
     description: formatMessage({
