@@ -5,7 +5,7 @@ const nanoBleExtension = formatMessage => ({
     }),
     extensionId: 'nanoBle',
     version: '1.0.0',
-    supportDevice: ['arduinoNano'],
+    supportDevice: ['arduinoNano', 'iotAiKit', 'arduinoNano_arduinoUno'],
     author: 'YourName',
     iconURL: 'asset/nano_ble.png',
     description: formatMessage({
