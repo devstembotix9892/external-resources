@@ -5,7 +5,7 @@ const bleExtension = formatMessage => ({
     }),
     extensionId: 'ble',
     version: '1.0.0',
-    supportDevice: ['arduinoEsp32'],
+    supportDevice: ['arduinoEsp32', 'intermediateKit'],
     author: 'YourName',
     iconURL: 'asset/ble.png',
     description: formatMessage({
