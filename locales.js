@@ -65,8 +65,15 @@ module.exports = {
         'slcd.name': 'LCD',
         'slcd.description': 'liquid crystal display which based on I2C bus.',
         'wifi.name': 'WiFi Connection',
-        'wifi.description': 'Connect ESP boards to WiFi networks using blocks.'
-
+        'wifi.description': 'Connect ESP boards to WiFi networks using blocks.',
+        'ble.name': 'BLE Connection',
+        'ble.description':'Connect ESP32 boards via Bluetooth Low Energy (BLE)',
+        'nanoBle.name':'Nano Bluetooth',
+        'nanoBle.description':'Connect Arduino Nano via Bluetooth (HC-05 / HM-10).',
+        'steppermotor.name':'Stepper Motor',
+        'steppermotor.description':'Control stepper motor direction, speed, and steps using.',
+        'ledmatrix.name':'LED Matrix',
+        'ledmatrix.description':'Control digits on a 5x7 LED Matrix using NeoPixel.'
 
     },
     'zh-cn': {
@@ -135,7 +142,13 @@ module.exports = {
         "slcd.description": "基于I2C总线的液晶显示屏。",
         "wifi.name": "WiFi连接",
         "wifi.description": "使用积木将ESP开发板连接到WiFi网络。",
-        "ble.name": "BLE Connection",
-        "ble.description":"Connect ESP32 boards via Bluetooth Low Energy (BLE)"
+        'ble.name': '“BLE 连接”',
+        'ble.description':'通过低功耗蓝牙（BLE）连接ESP32开发板',
+        'nanoBle.name':'纳米蓝牙',
+        'nanoBle.description':'通过蓝牙（HC-05 / HM-10）连接 Arduino Nano。',
+        'steppermotor.name':'步进电机',
+        'steppermotor.description':'使用以下方法控制步进电机的方向、速度和步数。',
+        'ledmatrix.name':'LED矩阵',
+        'ledmatrix.description':'使用 NeoPixel 控制 5x7 LED 点阵上的数字。'
     }
 };
