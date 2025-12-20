@@ -3,6 +3,7 @@
 function addToolbox () {
     return `
 <category name="%{BKY_LEDMATRIX_CATEGORY}" id="LEDMATRIX_CATEGORY" colour="#FF8C00" secondaryColour="#FFB733">
+
     <block type="ledmatrix_init">
         <value name="NUM_LEDS">
             <shadow type="math_number">
@@ -32,7 +33,7 @@ function addToolbox () {
         </value>
     </block>
 
-    <!-- ✅ New block for symbol display -->
+    <!-- Symbol display block -->
     <block type="ledmatrix_showSymbol">
         <value name="SYMBOL">
             <shadow type="text">
@@ -41,6 +42,11 @@ function addToolbox () {
         </value>
     </block>
 
+    
+    <!-- ⭐ New custom draw block -->
+    <block type="ledmatrix_draw"></block>
+
 </category>`;
 }
+
 exports = addToolbox;

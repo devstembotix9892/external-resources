@@ -1,20 +1,27 @@
 /* eslint-disable func-style */
 /* eslint-disable require-jsdoc */
+
 function addGenerator(Blockly) {
+
+    // ================================
+    // INIT BLOCK
+    // ================================
     Blockly.Arduino.ledmatrix_init = function (block) {
         const pin = block.getFieldValue('PIN');
         const numLeds = Blockly.Arduino.valueToCode(block, 'NUM_LEDS', Blockly.Arduino.ORDER_ATOMIC) || '35';
         const brightness = Blockly.Arduino.valueToCode(block, 'BRIGHTNESS', Blockly.Arduino.ORDER_ATOMIC) || '50';
 
         Blockly.Arduino.includes_.neopixel = '#include <Adafruit_NeoPixel.h>';
+
         Blockly.Arduino.definitions_.neopixel_matrix = `
 #define PIN ${pin}
 #define NUM_LEDS ${numLeds}
 #define BRIGHTNESS ${brightness}
 Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
-// 5x7 font for digits 0–9, letters A–Z, and symbols (heart, smile)
+// CHARACTER MAP Digits + Letters + Symbols
 const uint8_t characters[38][5] = {
+
   // Digits 0–9
   {0x3E,0x51,0x49,0x45,0x3E}, // 0
   {0x00,0x42,0x7F,0x40,0x00}, // 1
@@ -56,21 +63,22 @@ const uint8_t characters[38][5] = {
   {0x61,0x51,0x49,0x45,0x43}, // Z
 
   // Symbols
-  {0x0A,0x1F,0x1F,0x0E,0x04}, // ♥ Heart
-  {0x00,0x0A,0x00,0x11,0x0E}  // ☺ Smile
+  {0x0A,0x1F,0x1F,0x0E,0x04}, // ♥ Heart (36)
+  {0x00,0x0A,0x00,0x11,0x0E}  // ☺ Smile (37)
 };
 
 int getIndex(int x, int y) {
-  return y * 5 + x;
+  return y * 7 + x;
 }
 
 void displayCharacter(char ch, uint32_t color) {
   matrix.clear();
   int index = -1;
+
   if (ch >= '0' && ch <= '9') index = ch - '0';
   else if (ch >= 'A' && ch <= 'Z') index = 10 + (ch - 'A');
-  else if (ch == '*') index = 36; // Heart
-  else if (ch == ':') index = 37; // Smile
+  else if (ch == '*') index = 36;
+  else if (ch == ':') index = 37;
   else return;
 
   for (int x = 0; x < 5; x++) {
@@ -83,34 +91,60 @@ void displayCharacter(char ch, uint32_t color) {
   }
   matrix.show();
 }
-        `;
+`;
 
         Blockly.Arduino.setups_.neopixel_matrix = `
-  matrix.begin();
-  matrix.setBrightness(BRIGHTNESS);
-  matrix.show();
-        `;
+matrix.begin();
+matrix.setBrightness(BRIGHTNESS);
+matrix.show();
+`;
 
         return '';
     };
 
+    // ================================
+    // DIGIT
+    // ================================
     Blockly.Arduino.ledmatrix_showDigit = function (block) {
         const digit = Blockly.Arduino.valueToCode(block, 'DIGIT', Blockly.Arduino.ORDER_ATOMIC) || '0';
-        return `displayCharacter('0' + ${digit}, matrix.Color(255, 255, 0));\n`;
+        return `displayCharacter('0' + ${digit}, matrix.Color(255,255,0));\n`;
     };
 
+    // ================================
+    // LETTER
+    // ================================
     Blockly.Arduino.ledmatrix_showChar = function (block) {
         const charVal = block.getFieldValue('CHAR') || 'A';
-        return `displayCharacter('${charVal}', matrix.Color(0, 255, 0));\n`;
+        return `displayCharacter('${charVal}', matrix.Color(0,255,0));\n`;
     };
 
+    // ================================
+    // SYMBOL (heart/smile)
+    // ================================
     Blockly.Arduino.ledmatrix_showSymbol = function (block) {
         const symbol = block.getFieldValue('SYMBOL') || '*';
-        return `displayCharacter('${symbol}', matrix.Color(255, 0, 0));\n`;
+        return `displayCharacter('${symbol}', matrix.Color(255,0,0));\n`;
+    };
+
+    // ================================
+    // ⭐ CUSTOM 5×7 DRAW BLOCK
+    // ================================
+    Blockly.Arduino.ledmatrix_draw = function (block) {
+        const matrix = block.getFieldValue("MATRIX");
+
+        let code = `
+matrix.clear();
+for(int i = 0; i < 38; i++){
+    if("${matrix}"[i] == '1'){
+        matrix.setPixelColor(i, matrix.Color(0,150,255));
+    }
+}
+matrix.show();
+`;
+        return code;
     };
 
     return Blockly;
 }
 
 exports = addGenerator;
-
