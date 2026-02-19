@@ -19,9 +19,12 @@ function addGenerator(Blockly) {
 #define BRIGHTNESS ${brightness}
 Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
-// CHARACTER MAP Digits + Letters + Symbols
-const uint8_t characters[38][5] = {
 
+#define MATRIX_WIDTH 5
+#define MATRIX_HEIGHT 7
+
+
+const uint8_t characters[38][5] = {
   // Digits 0–9
   {0x3E,0x51,0x49,0x45,0x3E}, // 0
   {0x00,0x42,0x7F,0x40,0x00}, // 1
@@ -62,14 +65,28 @@ const uint8_t characters[38][5] = {
   {0x07,0x08,0x70,0x08,0x07}, // Y
   {0x61,0x51,0x49,0x45,0x43}, // Z
 
-  // Symbols
-  {0x0A,0x1F,0x1F,0x0E,0x04}, // ♥ Heart (36)
-  {0x00,0x0A,0x00,0x11,0x0E}  // ☺ Smile (37)
+  
+  {0x1C,0x3E,0x7C,0x3E,0x1C}, // ♥ Heart (36)
+ {0x20,0x4C,0x40,0x4C,0x20}  // ☺ Smile (37)
 };
 
+
 int getIndex(int x, int y) {
-  return y * 7 + x;
+  // x: 0..4 (left→right), y: 0..6 (top→bottom)
+  return y * MATRIX_WIDTH + x;
 }
+
+
+void drawCustom(uint8_t symbol[35], uint32_t color) {
+  matrix.clear();
+  for (int i = 0; i < 35 && i < NUM_LEDS; i++) {
+    if (symbol[i] == 1) {
+      matrix.setPixelColor(i, color);
+    }
+  }
+  matrix.show();
+}
+
 
 void displayCharacter(char ch, uint32_t color) {
   matrix.clear();
@@ -81,11 +98,14 @@ void displayCharacter(char ch, uint32_t color) {
   else if (ch == ':') index = 37;
   else return;
 
+  // 5 column (x), 7 row (y)
   for (int x = 0; x < 5; x++) {
     uint8_t column = characters[index][x];
     for (int y = 0; y < 7; y++) {
-      if (column & (1 << y)) {
-        matrix.setPixelColor(getIndex(x, y), color);
+      if (y < MATRIX_HEIGHT) {
+        if (column & (1 << y)) {
+          matrix.setPixelColor(getIndex(x, y), color);
+        }
       }
     }
   }
@@ -107,7 +127,7 @@ matrix.show();
     // ================================
     Blockly.Arduino.ledmatrix_showDigit = function (block) {
         const digit = Blockly.Arduino.valueToCode(block, 'DIGIT', Blockly.Arduino.ORDER_ATOMIC) || '0';
-        return `displayCharacter('0' + ${digit}, matrix.Color(255,255,0));\n`;
+        return `displayCharacter('0' + (${digit}), matrix.Color(255,255,0));\n`;
     };
 
     // ================================
@@ -127,20 +147,22 @@ matrix.show();
     };
 
     // ================================
-    // ⭐ CUSTOM 5×7 DRAW BLOCK
+    // CUSTOM PATTERN
     // ================================
-    Blockly.Arduino.ledmatrix_draw = function (block) {
-        const matrix = block.getFieldValue("MATRIX");
+    Blockly.Arduino.ledmatrix_draw_custom = function (block) {
+        const matrixVal = block.getFieldValue('MATRIX');
 
-        let code = `
-matrix.clear();
-for(int i = 0; i < 38; i++){
-    if("${matrix}"[i] == '1'){
-        matrix.setPixelColor(i, matrix.Color(0,150,255));
-    }
-}
-matrix.show();
-`;
+        let code = 'uint8_t customSymbol[35] = {';
+
+        for (let i = 0; i < 35; i++) {
+            const bit = matrixVal && matrixVal[i] === '1' ? '1' : '0';
+            code += bit;
+            if (i < 34) code += ',';
+        }
+
+        code += '};\n';
+        code += 'drawCustom(customSymbol, matrix.Color(0,255,0));\n';
+
         return code;
     };
 

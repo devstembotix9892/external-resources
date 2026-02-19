@@ -1,6 +1,6 @@
 /* eslint-disable func-style */
 /* eslint-disable require-jsdoc */
-function addToolbox () {
+function addToolbox() {
     return `
 <category name="%{BKY_LEDMATRIX_CATEGORY}" id="LEDMATRIX_CATEGORY" colour="#FF8C00" secondaryColour="#FFB733">
 
@@ -33,7 +33,6 @@ function addToolbox () {
         </value>
     </block>
 
-    <!-- Symbol display block -->
     <block type="ledmatrix_showSymbol">
         <value name="SYMBOL">
             <shadow type="text">
@@ -42,10 +41,7 @@ function addToolbox () {
         </value>
     </block>
 
-    
-    <!-- ⭐ New custom draw block -->
-    <block type="ledmatrix_draw"></block>
-
+    <block type="ledmatrix_draw_custom"></block>
 </category>`;
 }
 
