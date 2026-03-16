@@ -234,6 +234,978 @@ return '';
 
 };
 
+Blockly.Arduino.ble_robot_full_1 = function(block){
+
+const name =
+Blockly.Arduino.valueToCode(block,'NAME',
+Blockly.Arduino.ORDER_ATOMIC) || '"DOZZRE"';
+
+
+// ===== INCLUDE =====
+
+Blockly.Arduino.includes_['ble_robot'] = `
+#include "BluetoothSerial.h"
+#include <ESP32Servo.h>
+`;
+
+
+// ===== MOTOR PINS =====
+
+Blockly.Arduino.definitions_['motor_pins'] = `
+#define MOTOR_FL1 13
+#define MOTOR_FL2 2
+#define MOTOR_FR1 18
+#define MOTOR_FR2 12
+#define MOTOR_BL1 15
+#define MOTOR_BL2 23
+#define MOTOR_BR1 19
+#define MOTOR_BR2 27
+
+#define SERVO_PIN 14
+`;
+
+
+// ===== VARIABLES =====
+
+Blockly.Arduino.definitions_['robot_vars'] = `
+BluetoothSerial SerialBT;
+
+Servo myServo;
+
+int servoPosition = 0;
+
+char command;
+`;
+
+
+// ===== FUNCTIONS =====
+
+Blockly.Arduino.definitions_['robot_functions'] = `
+
+// ---------- MOVEMENT ----------
+
+void moveForward() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void moveBackward() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void moveLeft() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void moveRight() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void rotateClockwise() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void rotateAnticlockwise() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void stopMotors() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+// ---------- SERVO ----------
+
+void setServoPosition(int position){
+
+servoPosition = position;
+
+myServo.detach();
+
+delay(10);
+
+myServo.attach(SERVO_PIN);
+
+myServo.write(servoPosition);
+
+}
+
+`;
+
+
+// ===== SETUP =====
+
+Blockly.Arduino.setups_['robot_setup'] = `
+
+pinMode(MOTOR_FL1, OUTPUT);
+pinMode(MOTOR_FL2, OUTPUT);
+pinMode(MOTOR_FR1, OUTPUT);
+pinMode(MOTOR_FR2, OUTPUT);
+pinMode(MOTOR_BL1, OUTPUT);
+pinMode(MOTOR_BL2, OUTPUT);
+pinMode(MOTOR_BR1, OUTPUT);
+pinMode(MOTOR_BR2, OUTPUT);
+
+myServo.attach(SERVO_PIN);
+myServo.write(servoPosition);
+
+SerialBT.begin(${name});
+
+Serial.println("Bluetooth Robot Ready");
+
+`;
+
+
+// ===== LOOP =====
+
+Blockly.Arduino.loops_['robot_loop'] = `
+
+if (SerialBT.available()) {
+
+command = SerialBT.read();
+
+switch(command){
+
+case 'u': moveForward(); break;
+case 'd': moveBackward(); break;
+case 'l': moveLeft(); break;
+case 'r': moveRight(); break;
+case 'C': rotateClockwise(); break;
+case 'G': rotateAnticlockwise(); break;
+case 'n': stopMotors(); break;
+case 'f': setServoPosition(70); break;
+case 'b': setServoPosition(0); break;
+
+break;
+}
+
+}
+
+`;
+
+return '';
+
+};
+
+
+Blockly.Arduino.ble_robot_full_2 = function(block){
+
+const name =
+Blockly.Arduino.valueToCode(block,'NAME',
+Blockly.Arduino.ORDER_ATOMIC) || '"Pen"';
+
+
+// ===== INCLUDE =====
+
+Blockly.Arduino.includes_['ble_robot'] = `
+#include "BluetoothSerial.h"
+#include <ESP32Servo.h>
+`;
+
+
+// ===== MOTOR PINS =====
+
+Blockly.Arduino.definitions_['motor_pins'] = `
+#define MOTOR_FL1 13
+#define MOTOR_FL2 2
+#define MOTOR_FR1 18
+#define MOTOR_FR2 12
+#define MOTOR_BL1 15
+#define MOTOR_BL2 23
+#define MOTOR_BR1 19
+#define MOTOR_BR2 27
+
+#define SERVO_PIN 14
+`;
+
+
+// ===== VARIABLES =====
+
+Blockly.Arduino.definitions_['robot_vars'] = `
+BluetoothSerial SerialBT;
+
+Servo myServo;
+
+int servoPosition = 0;
+
+char command;
+`;
+
+
+// ===== FUNCTIONS =====
+
+Blockly.Arduino.definitions_['robot_functions'] = `
+
+// ---------- MOVEMENT ----------
+
+void moveForward() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void moveBackward() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void moveLeft() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void moveRight() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void rotateClockwise() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void rotateAnticlockwise() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void stopMotors() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+// ---------- SERVO ----------
+
+void setServoPosition(int position){
+
+servoPosition = position;
+
+myServo.detach();
+
+delay(10);
+
+myServo.attach(SERVO_PIN);
+
+myServo.write(servoPosition);
+
+}
+
+`;
+
+
+// ===== SETUP =====
+
+Blockly.Arduino.setups_['robot_setup'] = `
+
+pinMode(MOTOR_FL1, OUTPUT);
+pinMode(MOTOR_FL2, OUTPUT);
+pinMode(MOTOR_FR1, OUTPUT);
+pinMode(MOTOR_FR2, OUTPUT);
+pinMode(MOTOR_BL1, OUTPUT);
+pinMode(MOTOR_BL2, OUTPUT);
+pinMode(MOTOR_BR1, OUTPUT);
+pinMode(MOTOR_BR2, OUTPUT);
+
+myServo.attach(SERVO_PIN);
+myServo.write(servoPosition);
+
+SerialBT.begin(${name});
+
+Serial.println("Bluetooth Robot Ready");
+
+`;
+
+
+// ===== LOOP =====
+
+Blockly.Arduino.loops_['robot_loop'] = `
+
+if (SerialBT.available()) {
+
+command = SerialBT.read();
+
+switch(command){
+
+case 'u': moveForward(); break;
+case 'd': moveBackward(); break;
+case 'l': moveLeft(); break;
+case 'r': moveRight(); break;
+case 'C': rotateClockwise(); break;
+case 'G': rotateAnticlockwise(); break;
+case 'n': stopMotors(); break;
+case 'f': setServoPosition(70); break;
+case 'b': setServoPosition(0); break;
+
+break;
+}
+
+}
+
+`;
+
+return '';
+
+};
+
+
+
+Blockly.Arduino.ble_robot_full_3 = function(block){
+
+const name =
+Blockly.Arduino.valueToCode(block,'NAME',
+Blockly.Arduino.ORDER_ATOMIC) || '"Soccer"';
+
+
+// ===== INCLUDE =====
+
+Blockly.Arduino.includes_['ble_robot'] = `
+#include "BluetoothSerial.h"
+#include <ESP32Servo.h>
+`;
+
+
+// ===== MOTOR PINS =====
+
+Blockly.Arduino.definitions_['motor_pins'] = `
+#define MOTOR_FL1 13
+#define MOTOR_FL2 2
+#define MOTOR_FR1 18
+#define MOTOR_FR2 12
+#define MOTOR_BL1 15
+#define MOTOR_BL2 23
+#define MOTOR_BR1 19
+#define MOTOR_BR2 27
+
+#define SERVO_PIN 14
+`;
+
+
+// ===== VARIABLES =====
+
+Blockly.Arduino.definitions_['robot_vars'] = `
+BluetoothSerial SerialBT;
+
+Servo myServo;
+
+int servoPosition = 0;
+
+char command;
+`;
+
+
+// ===== FUNCTIONS =====
+
+Blockly.Arduino.definitions_['robot_functions'] = `
+
+// ---------- MOVEMENT ----------
+
+void moveForward() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void moveBackward() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void moveLeft() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void moveRight() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void rotateClockwise() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void rotateAnticlockwise() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void stopMotors() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+// ---------- SERVO ----------
+
+void setServoPosition(int position){
+
+servoPosition = position;
+
+myServo.detach();
+
+delay(10);
+
+myServo.attach(SERVO_PIN);
+
+myServo.write(servoPosition);
+
+}
+
+`;
+
+
+// ===== SETUP =====
+
+Blockly.Arduino.setups_['robot_setup'] = `
+
+pinMode(MOTOR_FL1, OUTPUT);
+pinMode(MOTOR_FL2, OUTPUT);
+pinMode(MOTOR_FR1, OUTPUT);
+pinMode(MOTOR_FR2, OUTPUT);
+pinMode(MOTOR_BL1, OUTPUT);
+pinMode(MOTOR_BL2, OUTPUT);
+pinMode(MOTOR_BR1, OUTPUT);
+pinMode(MOTOR_BR2, OUTPUT);
+
+myServo.attach(SERVO_PIN);
+myServo.write(servoPosition);
+
+SerialBT.begin(${name});
+
+Serial.println("Bluetooth Robot Ready");
+
+`;
+
+
+// ===== LOOP =====
+
+Blockly.Arduino.loops_['robot_loop'] = `
+
+if (SerialBT.available()) {
+
+command = SerialBT.read();
+
+switch(command){
+
+case 'u': moveForward(); break;
+case 'd': moveBackward(); break;
+case 'l': moveLeft(); break;
+case 'r': moveRight(); break;
+case 'C': rotateClockwise(); break;
+case 'G': rotateAnticlockwise(); break;
+case 'n': stopMotors(); break;
+case 'f': setServoPosition(70); break;
+case 'b': setServoPosition(0); break;
+
+break;
+}
+
+}
+
+`;
+
+return '';
+
+};
+
+
+
+Blockly.Arduino.ble_robot_full_4 = function(block){
+
+const name =
+Blockly.Arduino.valueToCode(block,'NAME',
+Blockly.Arduino.ORDER_ATOMIC) || '"Gripper"';
+
+
+// ===== INCLUDE =====
+
+Blockly.Arduino.includes_['ble_robot'] = `
+#include "BluetoothSerial.h"
+#include <ESP32Servo.h>
+`;
+
+
+// ===== MOTOR PINS =====
+
+Blockly.Arduino.definitions_['motor_pins'] = `
+#define MOTOR_FL1 13
+#define MOTOR_FL2 2
+#define MOTOR_FR1 18
+#define MOTOR_FR2 12
+#define MOTOR_BL1 15
+#define MOTOR_BL2 23
+#define MOTOR_BR1 19
+#define MOTOR_BR2 27
+
+#define SERVO_PIN 14
+`;
+
+
+// ===== VARIABLES =====
+
+Blockly.Arduino.definitions_['robot_vars'] = `
+BluetoothSerial SerialBT;
+
+Servo myServo;
+
+int servoPosition = 0;
+
+char command;
+`;
+
+
+// ===== FUNCTIONS =====
+
+Blockly.Arduino.definitions_['robot_functions'] = `
+
+// ---------- MOVEMENT ----------
+
+void moveForward() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void moveBackward() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void moveLeft() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void moveRight() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void rotateClockwise() {
+
+digitalWrite(MOTOR_FL1, HIGH);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, HIGH);
+
+digitalWrite(MOTOR_BL1, HIGH);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, HIGH);
+
+}
+
+
+void rotateAnticlockwise() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, HIGH);
+
+digitalWrite(MOTOR_FR1, HIGH);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, HIGH);
+
+digitalWrite(MOTOR_BR1, HIGH);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+void stopMotors() {
+
+digitalWrite(MOTOR_FL1, LOW);
+digitalWrite(MOTOR_FL2, LOW);
+
+digitalWrite(MOTOR_FR1, LOW);
+digitalWrite(MOTOR_FR2, LOW);
+
+digitalWrite(MOTOR_BL1, LOW);
+digitalWrite(MOTOR_BL2, LOW);
+
+digitalWrite(MOTOR_BR1, LOW);
+digitalWrite(MOTOR_BR2, LOW);
+
+}
+
+
+// ---------- SERVO ----------
+
+void setServoPosition(int position){
+
+servoPosition = position;
+
+myServo.detach();
+
+delay(10);
+
+myServo.attach(SERVO_PIN);
+
+myServo.write(servoPosition);
+
+}
+
+`;
+
+
+// ===== SETUP =====
+
+Blockly.Arduino.setups_['robot_setup'] = `
+
+pinMode(MOTOR_FL1, OUTPUT);
+pinMode(MOTOR_FL2, OUTPUT);
+pinMode(MOTOR_FR1, OUTPUT);
+pinMode(MOTOR_FR2, OUTPUT);
+pinMode(MOTOR_BL1, OUTPUT);
+pinMode(MOTOR_BL2, OUTPUT);
+pinMode(MOTOR_BR1, OUTPUT);
+pinMode(MOTOR_BR2, OUTPUT);
+
+myServo.attach(SERVO_PIN);
+myServo.write(servoPosition);
+
+SerialBT.begin(${name});
+
+Serial.println("Bluetooth Robot Ready");
+
+`;
+
+
+// ===== LOOP =====
+
+Blockly.Arduino.loops_['robot_loop'] = `
+
+if (SerialBT.available()) {
+
+command = SerialBT.read();
+
+switch(command){
+
+case 'u': moveForward(); break;
+case 'd': moveBackward(); break;
+case 'l': moveLeft(); break;
+case 'r': moveRight(); break;
+case 'C': rotateClockwise(); break;
+case 'G': rotateAnticlockwise(); break;
+case 'n': stopMotors(); break;
+case 'f': setServoPosition(60); break;
+case 'b': setServoPosition(0); break;
+
+break;
+}
+
+}
+
+`;
+
+return '';
+
+};
 return Blockly;
 
 }
